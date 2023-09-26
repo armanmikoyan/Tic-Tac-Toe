@@ -22,7 +22,7 @@ Ocell::Ocell()
 
 Emptycell::Emptycell()
 : Cell{' '}
-{
+{ 
 }
 
 

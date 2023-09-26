@@ -12,10 +12,10 @@ public:
    ~Board();
 
 public:
-    Cell** get_board();
-    void set_cell(size_t, size_t, const Cell&);
+    std::vector<std::vector<Cell *>> get_board();
+    void set_cell(size_t, size_t, Cell*);
 private:
-    Cell** m_board; 
+    std::vector<std::vector<Cell*>> m_board;
 };
 
 

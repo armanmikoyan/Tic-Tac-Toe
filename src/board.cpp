@@ -2,43 +2,48 @@
 
 
 Board::Board()
-:   m_board{new Cell*[SIZE]}
+:   m_board(SIZE, std::vector<Cell*>(SIZE, nullptr))
 {
     for (int i = 0; i < SIZE; ++i)
     {
-        m_board[i] = new Emptycell[SIZE];
+        for(int j = 0; j < SIZE; ++j)
+        {
+            m_board[i][j] = new Emptycell;
+        }
+       
     }
 }
 
 Board::~Board()
 {
-    for (int i = 0; i < SIZE; ++i)
+    for (int i = 0; i < SIZE; ++i) 
     {
-        delete  m_board[i];
+        for (int j = 0; j < SIZE; ++j) 
+        {
+            delete m_board[i][j]; 
+        }
     } 
-    delete[] m_board;
 }
 
-Cell** Board::get_board()
+std::vector<std::vector<Cell *>> Board::get_board()
 {
-    return m_board;
+    return  m_board;
 }
 
-void Board::set_cell(size_t row, size_t col, const Cell& cell)
+void Board::set_cell(size_t row, size_t col, Cell* cell)
 {
     if (row >= SIZE || col >= SIZE)
     {
-       throw std::out_of_range("Out of Bounds");  
+       std::cout << "Out of Bounds" ;  
     }
-    Emptycell* tmp = dynamic_cast<Emptycell*>(&m_board[row][col]);
+    Emptycell* tmp = dynamic_cast<Emptycell*>(m_board[row][col]);
     if (tmp)
     {
-        std::cout << typeid(tmp).name() << " ";
+        delete tmp;
         m_board[row][col] = cell;
-        std::cout << m_board[row][col].get_value();
     }
     else
     {
-        throw std::out_of_range("Cell is not empty");  
+        std::cout << "Cell is not empty";  
     }
 }
