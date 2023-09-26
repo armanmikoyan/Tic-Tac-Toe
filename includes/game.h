@@ -2,6 +2,8 @@
 #define GAME_H
 
 #include "board.h"
+#include <thread>
+#include <chrono>
 
 #define SIZE 3
 
@@ -19,6 +21,7 @@ public:
     void draw_table();
     void step();
     void start();
+    void syncronization();
 private:
 
     Board board;

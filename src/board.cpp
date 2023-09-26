@@ -45,7 +45,7 @@ void Board::set_cell(size_t row, size_t col, Cell* cell)
     }
     else
     {
-        std::cout << "Cell is not empty";  
+        std::cout << "Cell is not empty\n";  
     }
 }
 
@@ -73,7 +73,7 @@ void Board::read()
                 {
                     set_cell(i, j, new Ocell());
                 } 
-                 else if (symbol == 'X') 
+                else if (symbol == 'X') 
                 {
                     set_cell(i, j, new Xcell());
                 }
@@ -91,7 +91,7 @@ void Board::write()
     {
         for (int j = 0; j < SIZE; ++j)
         {
-             if (m_board[i][j]->get_value() == ' ')
+            if (m_board[i][j]->get_value() == ' ')
             {
                 file << '-';
             }

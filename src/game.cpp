@@ -53,7 +53,6 @@ void Game::step()
     }
     board.set_cell(row, col, cell);
     board.write();
-    draw_table();
 }
 
 
@@ -62,8 +61,28 @@ void Game::step()
 
 void Game::start()
 {
+    std::thread drawThread(&Game::syncronization, this);
     while (true)
     {
         step();
     }
+     drawThread.join();
 }
+
+
+void Game::syncronization()
+{
+    while (true)
+    {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+        board.read();
+        draw_table();
+        board.write();      
+    }
+}
+
+
+
+
+
+
