@@ -59,23 +59,26 @@ void Board::read()
         return;
     }
     char symbol;
-    for (size_t i = 0; i < 3; ++i) 
+    for (size_t i = 0; i < SIZE; ++i) 
     {
-        for (size_t j = 0; j < 3; ++j) 
+        for (size_t j = 0; j < SIZE; ++j) 
         {
             if (file.get(symbol)) 
             {
                 if (symbol == '-') 
                 {
                     set_cell(i, j, new Emptycell());
+
                 } 
                 else if (symbol == 'O') 
                 {
                     set_cell(i, j, new Ocell());
+
                 } 
                 else if (symbol == 'X') 
                 {
                     set_cell(i, j, new Xcell());
+
                 }
             }
         }
@@ -93,7 +96,7 @@ void Board::write()
         {
             if (m_board[i][j]->get_value() == ' ')
             {
-                file << '-';
+                file << '-';   
             }
             else
             {
@@ -102,3 +105,5 @@ void Board::write()
         }
     }
 }
+
+

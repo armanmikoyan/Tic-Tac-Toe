@@ -4,4 +4,5 @@
 int main(){
     Game mygame;
     mygame.start();
+    Board b;
 }

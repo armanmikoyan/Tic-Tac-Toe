@@ -30,7 +30,7 @@ void Game::step()
     size_t row{};
     size_t col{};
     std::cin >> row;
-    std::cin >> col;
+    std::cin >> col; 
     if (row >= SIZE || col >= SIZE)
     {
         std::cout << "out of bounds\n";
@@ -55,10 +55,6 @@ void Game::step()
     board.write();
 }
 
-
-
-
-
 void Game::start()
 {
     std::thread drawThread(&Game::syncronization, this);
@@ -74,10 +70,9 @@ void Game::syncronization()
 {
     while (true)
     {
-        std::this_thread::sleep_for(std::chrono::seconds(1));
+        std::this_thread::sleep_for(std::chrono::seconds(3));
         board.read();
-        draw_table();
-        board.write();      
+        draw_table();   
     }
 }
 
